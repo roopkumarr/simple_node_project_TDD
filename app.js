@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const userRouter = require('./routes/user.route');
 
 var app = express();
 
@@ -19,8 +21,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+mongoose
+  .connect("mongodb://localhost/tddDB", {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log('Connected to the mongoDB at mongodb://localhost/tddDB...');
+  })
+  .catch(err => {
+    console.log('falied to connect to MongoDB...', err);
+    process.exit();
+  });
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/users', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
