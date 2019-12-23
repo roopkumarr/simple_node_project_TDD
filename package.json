@@ -1,11 +1,15 @@
 {
   "name": "nodejs-testing",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
+    "start": "nodemon ./bin/www",
     "test": "mocha --exit --timeout 10000",
-    "start": "nodemon ./bin/www"
+    "coverage": "nyc --reporter=html --reporter=text mocha --exit --timeout 15000"
   },
+  "keywords": [],
+  "author": "Roop Kumar R",
+  "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
     "cookie-parser": "~1.4.3",
@@ -17,7 +21,9 @@
     "mongoose": "^5.8.1",
     "morgan": "~1.9.0",
     "nodemon": "^2.0.2",
-    "nyc": "^14.1.1",
     "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "nyc": "^14.1.1"
   }
 }
