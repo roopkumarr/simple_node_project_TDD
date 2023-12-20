@@ -21,7 +21,7 @@
     "mongoose": "^5.8.1",
     "morgan": "~1.9.0",
     "nodemon": "^2.0.2",
-    "supertest": "^4.0.2"
+    "supertest": "^6.2.0"
   },
   "devDependencies": {
     "nyc": "^14.1.1"
